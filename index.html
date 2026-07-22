@@ -24,6 +24,7 @@
       --pk-footer-text-muted: rgba(255, 255, 255, 0.85);
       --pk-border-line: rgba(255, 255, 255, 0.2);
       --pk-orange-soft: #fdb878;
+      --pk-teal: #00a8a8;
     }
 
     * {
@@ -64,12 +65,14 @@
       display: flex;
       align-items: center;
       gap: 16px;
+      flex: 1;
     }
 
     .header-logo {
       display: flex;
       align-items: center;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
     .header-logo img {
@@ -98,14 +101,29 @@
     }
 
     .delivery-icon {
-      background-color: #00a8a8;
-      color: #004b79;
+      background-color: var(--pk-teal);
+      color: #ffffff;
       width: 28px;
       height: 28px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .delivery-text-wrap {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      overflow: hidden;
+    }
+
+    .delivery-label {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.7);
+      font-weight: 400;
+      line-height: 1.1;
     }
 
     .delivery-text {
@@ -114,6 +132,55 @@
       overflow: hidden;
       text-overflow: ellipsis;
       font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .btn-change-loc {
+      display: none;
+      background-color: var(--pk-teal);
+      color: #ffffff;
+      border: none;
+      padding: 6px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-left: auto;
+      flex-shrink: 0;
+    }
+
+    .mobile-search-bar {
+      display: none;
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      width: 100%;
+    }
+
+    .search-input-wrap svg {
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+    }
+
+    .search-input-wrap input {
+      width: 100%;
+      padding: 10px 16px 10px 42px;
+      border-radius: var(--radius-pill);
+      border: none;
+      outline: none;
+      font-size: 0.95rem;
+      background-color: #ffffff;
+      color: var(--text-dark);
+    }
+
+    .search-input-wrap input::placeholder {
+      color: #94a3b8;
     }
 
     .header-right {
@@ -593,10 +660,46 @@
       }
     }
 
+    /* Target Mobile Screens specifically for the new Navbar View */
     @media (max-width: 600px) {
+      .site-header {
+        padding: 10px 12px;
+      }
+
+      .header-container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .header-right {
+        display: none; /* Hide header right icons to match the requested design */
+      }
+
+      .delivery-btn {
+        flex: 1;
+        padding: 3px 6px 3px 6px;
+        border: 1px solid var(--pk-teal);
+        justify-content: flex-start;
+      }
+
+      .delivery-label {
+        display: block;
+      }
+
+      .delivery-text {
+        max-width: 160px;
+        font-size: 0.85rem;
+      }
+
+      .btn-change-loc {
+        display: block;
+      }
+
+      .mobile-search-bar {
+        display: block;
+      }
+
       .form-row { grid-template-columns: 1fr; }
-      .delivery-text { display: none; }
-      .nav-menu { display: none; }
       .footer-main-grid {
         grid-template-columns: 1fr;
         gap: 24px;
@@ -623,6 +726,7 @@
         <a href="https://pizzaking-eg.com/en" class="header-logo">
           <img src="https://pizzaking-pro.hel1.your-objectstorage.com/logo/pizza-king.png" alt="Pizza King Logo" />
         </a>
+        
         <button type="button" class="delivery-btn">
           <div class="delivery-icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
@@ -630,7 +734,13 @@
               <circle cx="12" cy="10" r="3"></circle>
             </svg>
           </div>
-          <span class="delivery-text" title="Delivery to: A5, وان ناينتي, One 90 Mixed ...">Delivery to: A5, وان ناينتي, One 90 Mixed ...</span>
+          
+          <div class="delivery-text-wrap">
+            <span class="delivery-label">Delivering to</span>
+            <span class="delivery-text" title="A5, وان ناينتي, One 90 Mix...">A5, وان ناينتي, One 90 Mix...</span>
+          </div>
+
+          <div class="btn-change-loc">Change</div>
         </button>
       </div>
 
@@ -664,6 +774,18 @@
           </a>
         </div>
       </div>
+
+      <!-- Mobile Search Bar -->
+      <div class="mobile-search-bar">
+        <div class="search-input-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m21 21-4.34-4.34"></path>
+            <circle cx="11" cy="11" r="8"></circle>
+          </svg>
+          <input type="text" placeholder="Search for food..." aria-label="Search for food">
+        </div>
+      </div>
+
     </div>
   </header>
 
@@ -739,7 +861,7 @@
 
   <footer class="footer-wrap">
     <div class="footer-watermark">
-      <img src="	https://pizzaking-eg.com/_next/image?url=%2FformLogoTheme.png&w=640&q=75" alt="Watermark" />
+      <img src="  https://pizzaking-eg.com/_next/image?url=%2FformLogoTheme.png&w=640&q=75" alt="Watermark" />
     </div>
 
     <div class="footer-container">
