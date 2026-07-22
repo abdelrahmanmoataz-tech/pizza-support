@@ -3,30 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Support & Review - Pizza King</title>
+  <title>App Support & Review - Pizza King</title>
   <style>
-    /* --- Design System Variables (Extracted from Image) --- */
+    /* --- Design System & Custom CSS Variables --- */
     :root {
-      --pk-blue: #004b79;       /* Main brand color (Header/Footer) */
-      --pk-orange: #f39222;     /* Accent color (Buttons/Stars) */
+      --pk-blue: #004b79;
+      --pk-orange: #f39222;
       --pk-orange-hover: #de8018;
-      --bg-color: #f8f9fa;      /* Light page background */
+      --bg-color: #f8f9fa;
       --card-bg: #ffffff;
-      --text-dark: #2d3748;
-      --text-blue: #004b79;
-      --text-muted: #718096;
-      --border-color: #edf2f7;
+      --text-dark: #1e293b;
+      --text-muted: #64748b;
+      --border-color: #e2e8f0;
       --radius-sm: 8px;
       --radius-md: 16px;
       --radius-pill: 50px;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     }
 
     body {
@@ -37,66 +36,147 @@
       min-height: 100vh;
     }
 
-    /* --- Header (Matches layout from image) --- */
-    header {
+    /* --- Header --- */
+    .site-header {
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
       background-color: var(--pk-blue);
-      color: white;
-      padding: 16px 5%;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+      padding: 10px 24px;
+    }
+
+    .header-container {
+      max-width: 1280px;
+      margin: 0 auto;
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
     }
 
     .header-logo {
-      font-size: 1.5rem;
-      font-weight: bold;
-      color: white;
+      display: flex;
+      align-items: center;
       text-decoration: none;
+    }
+
+    .header-logo img {
+      width: 48px;
+      height: 48px;
+      object-fit: contain;
+    }
+
+    .delivery-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      border: 1px solid #ffffff;
+      padding: 4px 16px 4px 5px;
+      border-radius: var(--radius-pill);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #ffffff;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    .delivery-btn:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .delivery-icon {
+      background-color: #00a8a8;
+      color: #004b79;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .delivery-text {
+      max-width: 280px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      font-size: 0.9rem;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      margin-right: 8px;
+    }
+
+    .nav-link {
+      position: relative;
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: opacity 0.2s ease;
+    }
+
+    .nav-link:hover {
+      opacity: 0.85;
+    }
+
+    .header-actions {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
-    .header-logo span {
-      color: var(--pk-orange);
-    }
-
-    .header-nav {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-    }
-
-    .header-nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-
-    .header-icons {
-      display: flex;
-      gap: 16px;
-    }
-
-    .icon-circle {
+    .icon-btn {
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background-color: rgba(255,255,255,0.1);
+      background-color: #ffffff;
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.8rem;
+      cursor: pointer;
+      color: var(--pk-blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.2s ease, opacity 0.2s ease;
     }
 
-    /* --- Main Content Area --- */
+    .icon-btn:hover {
+      transform: scale(1.05);
+    }
+
+    .icon-btn-primary {
+      background-color: var(--pk-orange);
+      color: #ffffff;
+    }
+
+    /* --- Form Section --- */
     main {
       flex: 1;
       display: flex;
       justify-content: center;
       align-items: center;
-      padding: 60px 20px;
+      padding: 50px 20px;
     }
 
     .form-container {
@@ -106,6 +186,7 @@
       padding: 40px;
       border-radius: var(--radius-md);
       box-shadow: var(--shadow);
+      border: 1px solid var(--border-color);
     }
 
     .form-header {
@@ -114,16 +195,17 @@
     }
 
     .form-header h1 {
-      color: var(--text-blue);
+      color: var(--pk-blue);
       font-size: 2rem;
       margin-bottom: 8px;
+      font-weight: 700;
     }
 
     .form-header p {
       color: var(--text-muted);
+      font-size: 0.95rem;
     }
 
-    /* --- Form Elements --- */
     .form-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -133,6 +215,8 @@
 
     @media (max-width: 600px) {
       .form-row { grid-template-columns: 1fr; }
+      .delivery-text { display: none; }
+      .nav-menu { display: none; }
     }
 
     .form-group {
@@ -143,18 +227,18 @@
       display: block;
       font-size: 0.9rem;
       font-weight: 600;
-      color: var(--text-blue);
+      color: var(--pk-blue);
       margin-bottom: 8px;
     }
 
     .form-control {
       width: 100%;
-      padding: 14px 16px;
+      padding: 12px 16px;
       background-color: var(--bg-color);
       border: 1px solid var(--border-color);
       border-radius: var(--radius-sm);
       color: var(--text-dark);
-      font-size: 1rem;
+      font-size: 0.95rem;
       outline: none;
       transition: all 0.2s ease;
     }
@@ -170,7 +254,6 @@
       min-height: 120px;
     }
 
-    /* --- Custom Select --- */
     select.form-control {
       appearance: none;
       background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23004b79%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
@@ -179,7 +262,7 @@
       background-size: 12px auto;
     }
 
-    /* --- Interactive Orange Star Rating --- */
+    /* Rating Stars */
     .rating-group {
       display: flex;
       gap: 8px;
@@ -202,15 +285,14 @@
       transform: scale(1.1);
     }
 
-    /* --- Submit Button --- */
     .btn-submit {
       width: 100%;
-      padding: 16px;
+      padding: 14px;
       background-color: var(--pk-orange);
       color: white;
       border: none;
       border-radius: var(--radius-pill);
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: bold;
       cursor: pointer;
       transition: background-color 0.2s;
@@ -221,7 +303,35 @@
       background-color: var(--pk-orange-hover);
     }
 
-    /* --- Footer (Matches layout from image) --- */
+    
+    .btn-retry {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: auto;
+      padding: 12px 32px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      margin-top: 8px;
+      background-color: var(--pk-blue);
+      border: 2px solid var(--pk-blue);
+      border-radius: var(--radius-pill);
+      color: #ffffff;
+      box-shadow: 0 4px 12px rgba(0, 75, 121, 0.2);
+    }
+
+    .btn-retry:hover {
+      color: var(--pk-blue);
+      border: 2px solid var(--pk-blue);
+      border-radius: var(--radius-pill);
+      background-color: transparent;
+      box-shadow: 0 4px 12px rgba(0, 75, 121, 0.2);
+    }
+
+    /* --- Footer --- */
     footer {
       background-color: var(--pk-blue);
       color: white;
@@ -274,11 +384,10 @@
       cursor: pointer;
     }
 
-    /* Success Message */
     #successMessage {
       display: none;
       text-align: center;
-      padding: 40px 20px;
+      padding: 20px 10px;
     }
 
     #successMessage svg {
@@ -289,33 +398,73 @@
     }
 
     #successMessage h2 {
-      color: var(--text-blue);
+      color: var(--pk-blue);
       margin-bottom: 10px;
+    }
+
+    #successMessage p {
+      margin-bottom: 24px;
+      color: var(--text-muted);
     }
   </style>
 </head>
 <body>
 
-  <!-- Brand Header -->
-  <header>
-    <a href="#" class="header-logo">
-      🍕 Pizza <span>King</span> App
-    </a>
-    <nav class="header-nav">
-      <a href="#">Menu</a>
-      <a href="#">About Us</a>
-      <div class="header-icons">
-        <div class="icon-circle">👤</div>
-        <div class="icon-circle">🛒</div>
+  <!-- Site Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-left">
+        <a href="https://pizzaking-eg.com/en" class="header-logo">
+          <img src="https://pizzaking-pro.hel1.your-objectstorage.com/logo/pizza-king.png" alt="Pizza King Logo" />
+        </a>
+        <button type="button" class="delivery-btn">
+          <div class="delivery-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <span class="delivery-text" title="Delivery to: A5, وان ناينتي, One 90 Mixed ...">Delivery to: A5, وان ناينتي, One 90 Mixed ...</span>
+        </button>
       </div>
-    </nav>
+
+      <div class="header-right">
+        <nav class="nav-menu">
+          <a class="nav-link" href="javascript:void(0)">Menu Pizza King</a>
+          <a class="nav-link" href="javascript:void(0)">About Pizza King</a>
+        </nav>
+
+        <div class="header-actions">
+          <button type="button" class="icon-btn" aria-label="Search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m21 21-4.34-4.34"></path>
+              <circle cx="11" cy="11" r="8"></circle>
+            </svg>
+          </button>
+          <button type="button" class="icon-btn">ع</button>
+          <button type="button" class="icon-btn" aria-label="Cart">
+            <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 512 512" height="18" width="18" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="176" cy="416" r="16" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></circle>
+              <circle cx="400" cy="416" r="16" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"></circle>
+              <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M48 80h64l48 272h256"></path>
+              <path fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M160 288h249.44a8 8 0 0 0 7.85-6.43l28.8-144a8 8 0 0 0-7.85-9.57H128"></path>
+            </svg>
+          </button>
+          <a href="javascript:void(0)" class="icon-btn icon-btn-primary" aria-label="User Account">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
   </header>
 
-  <!-- Main Content -->
+  <!-- Main Support Form Area -->
   <main>
     <div class="form-container">
       
-      <!-- Support & Review Form -->
       <div id="formWrapper">
         <div class="form-header">
           <h1>App Support & Feedback</h1>
@@ -371,19 +520,22 @@
         </form>
       </div>
 
-      <!-- Success State -->
+      <!-- Success Confirmation View -->
       <div id="successMessage">
         <svg viewBox="0 0 24 24">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
         <h2>Thank You!</h2>
         <p>Your feedback has been successfully submitted. If you requested support, our team will reach out via email shortly.</p>
+        
+        <!-- Updated Button -->
+        <button type="button" id="tryAgainBtn" class="btn-retry">Submit Another Response</button>
       </div>
 
     </div>
   </main>
 
-  <!-- Brand Footer -->
+  <!-- Footer -->
   <footer>
     <div class="footer-grid">
       <div class="footer-col">
@@ -392,15 +544,15 @@
       </div>
       <div class="footer-col">
         <h4>Support</h4>
-        <a href="#">Contact Us</a>
-        <a href="#">Track Order</a>
-        <a href="#">Privacy Policy</a>
+        <a href="javascript:void(0)">Contact Us</a>
+        <a href="javascript:void(0)">Track Order</a>
+        <a href="javascript:void(0)">Privacy Policy</a>
       </div>
       <div class="footer-col">
         <h4>Subscribe to Newsletter</h4>
         <div class="newsletter-form">
           <input type="email" placeholder="Your email address" />
-          <button>Subscribe</button>
+          <button type="button">Subscribe</button>
         </div>
       </div>
     </div>
@@ -410,21 +562,18 @@
   </footer>
 
   <script>
-    // --- Star Rating Logic ---
+    // Star Rating Logic
     const stars = document.querySelectorAll('.star');
     const ratingInput = document.getElementById('selectedRating');
     let currentRating = 0;
 
     stars.forEach(star => {
-      // Hover effect
       star.addEventListener('mouseover', function() {
         highlightStars(this.getAttribute('data-value'));
       });
-      // Remove hover effect
       star.addEventListener('mouseout', function() {
         highlightStars(currentRating);
       });
-      // Click to set rating
       star.addEventListener('click', function() {
         currentRating = this.getAttribute('data-value');
         ratingInput.value = currentRating;
@@ -442,21 +591,20 @@
       });
     }
 
-    // --- Form Submission Logic ---
+    // Form Submission & Reset Logic
     const form = document.getElementById('supportForm');
     const formWrapper = document.getElementById('formWrapper');
     const successMessage = document.getElementById('successMessage');
+    const tryAgainBtn = document.getElementById('tryAgainBtn');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // Native HTML5 Validation
       if (!form.checkValidity()) {
         form.reportValidity();
         return;
       }
 
-      // Gather Data
       const supportData = {
         name: document.getElementById('userName').value,
         email: document.getElementById('userEmail').value,
@@ -468,9 +616,19 @@
 
       console.log('Feedback Submitted:', supportData);
 
-      // Transition to Success UI
       formWrapper.style.display = 'none';
       successMessage.style.display = 'block';
+    });
+
+    // Reset Form when "Submit Another Response" is clicked
+    tryAgainBtn.addEventListener('click', function() {
+      form.reset();
+      currentRating = 0;
+      ratingInput.value = 0;
+      highlightStars(0);
+      
+      successMessage.style.display = 'none';
+      formWrapper.style.display = 'block';
     });
   </script>
 
