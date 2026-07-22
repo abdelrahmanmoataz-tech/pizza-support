@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>App Support & Review - Pizza King</title>
   <style>
-    /* --- Design System & Custom CSS Variables --- */
     :root {
       --pk-blue: #004b79;
       --pk-orange: #f39222;
@@ -19,6 +18,12 @@
       --radius-md: 16px;
       --radius-pill: 50px;
       --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+
+      --pk-footer-bg: #004b79;
+      --pk-text-white: #ffffff;
+      --pk-footer-text-muted: rgba(255, 255, 255, 0.85);
+      --pk-border-line: rgba(255, 255, 255, 0.2);
+      --pk-orange-soft: #fdb878;
     }
 
     * {
@@ -36,7 +41,6 @@
       min-height: 100vh;
     }
 
-    /* --- Header --- */
     .site-header {
       position: sticky;
       top: 0;
@@ -170,7 +174,6 @@
       color: #ffffff;
     }
 
-    /* --- Form Section --- */
     main {
       flex: 1;
       display: flex;
@@ -211,12 +214,6 @@
       grid-template-columns: 1fr 1fr;
       gap: 20px;
       margin-bottom: 20px;
-    }
-
-    @media (max-width: 600px) {
-      .form-row { grid-template-columns: 1fr; }
-      .delivery-text { display: none; }
-      .nav-menu { display: none; }
     }
 
     .form-group {
@@ -262,7 +259,6 @@
       background-size: 12px auto;
     }
 
-    /* Rating Stars */
     .rating-group {
       display: flex;
       gap: 8px;
@@ -303,7 +299,6 @@
       background-color: var(--pk-orange-hover);
     }
 
-    
     .btn-retry {
       display: inline-flex;
       align-items: center;
@@ -331,59 +326,6 @@
       box-shadow: 0 4px 12px rgba(0, 75, 121, 0.2);
     }
 
-    /* --- Footer --- */
-    footer {
-      background-color: var(--pk-blue);
-      color: white;
-      padding: 40px 5% 20px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 40px;
-      width: 100%;
-      max-width: 1200px;
-      margin-bottom: 40px;
-    }
-
-    .footer-col h4 {
-      margin-bottom: 16px;
-      color: var(--pk-orange);
-    }
-
-    .footer-col a {
-      display: block;
-      color: #e2e8f0;
-      text-decoration: none;
-      margin-bottom: 8px;
-      font-size: 0.9rem;
-    }
-
-    .newsletter-form {
-      display: flex;
-      margin-top: 10px;
-    }
-
-    .newsletter-form input {
-      padding: 10px;
-      border: none;
-      border-radius: 4px 0 0 4px;
-      outline: none;
-    }
-
-    .newsletter-form button {
-      background-color: var(--pk-orange);
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      border-radius: 0 4px 4px 0;
-      cursor: pointer;
-    }
-
     #successMessage {
       display: none;
       text-align: center;
@@ -406,11 +348,275 @@
       margin-bottom: 24px;
       color: var(--text-muted);
     }
+
+    .footer-wrap {
+      position: relative;
+      background-color: var(--pk-footer-bg);
+      color: var(--pk-text-white);
+      padding: 40px 0 20px 0;
+      overflow: hidden;
+    }
+
+    .footer-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 32px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .footer-main-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 2.2fr 1.2fr 1.2fr 1.4fr;
+      gap: 32px;
+      align-items: flex-start;
+      padding-bottom: 32px;
+    }
+
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .footer-brand .brand-logo {
+      width: 120px;
+      height: auto;
+    }
+
+    .social-wrap {
+      display: flex;
+      gap: 10px;
+    }
+
+    .social-wrap a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background-color: var(--pk-text-white);
+      border-radius: 50%;
+      transition: transform 0.2s ease, opacity 0.2s ease;
+    }
+
+    .social-wrap a:hover {
+      transform: scale(1.1);
+      opacity: 0.9;
+    }
+
+    .social-wrap img {
+      width: 16px;
+      height: 16px;
+      object-fit: contain;
+    }
+
+    .newsletter-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .newsletter-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--pk-text-white);
+      line-height: 1.3;
+    }
+
+    .newsletter-box {
+      display: flex;
+      align-items: center;
+      background-color: var(--pk-text-white);
+      border-radius: 8px;
+      padding: 4px 4px 4px 14px;
+      max-width: 320px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .newsletter-box input {
+      border: none;
+      outline: none;
+      background: transparent;
+      width: 100%;
+      font-size: 0.9rem;
+      color: #333333;
+    }
+
+    .newsletter-box input::placeholder {
+      color: #94a3b8;
+    }
+
+    .newsletter-box button {
+      background-color: var(--pk-orange-soft);
+      color: var(--pk-text-white);
+      border: none;
+      padding: 8px 16px;
+      border-radius: 6px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background-color 0.2s ease;
+    }
+
+    .newsletter-box button:hover {
+      background-color: var(--pk-orange);
+    }
+
+    .footer-nav-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-nav-heading {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--pk-text-white);
+      text-decoration: none;
+    }
+
+    .footer-nav-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-nav-links a {
+      color: var(--pk-footer-text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-nav-links a:hover {
+      color: var(--pk-text-white);
+    }
+
+    .contact-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--pk-text-white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: opacity 0.2s ease;
+    }
+
+    .contact-link:hover {
+      opacity: 0.85;
+    }
+
+    .contact-link svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid var(--pk-border-line);
+      padding-top: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.88rem;
+      color: var(--pk-footer-text-muted);
+    }
+
+    .footer-bottom a {
+      color: var(--pk-text-white);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+
+    .back-to-top-btn {
+      position: absolute;
+      right: 28px;
+      bottom: 20px;
+      width: 44px;
+      height: 44px;
+      background-color: var(--pk-orange);
+      color: var(--pk-text-white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      transition: transform 0.2s ease, background-color 0.2s ease;
+      z-index: 10;
+    }
+
+    .back-to-top-btn:hover {
+      background-color: var(--pk-orange-hover);
+      transform: translateY(-3px);
+    }
+
+    .back-to-top-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: currentColor;
+    }
+
+    .footer-watermark {
+      position: absolute;
+      bottom: -40px;
+      right: 20px;
+      width: 280px;
+      opacity: 0.12;
+      pointer-events: none;
+      z-index: 1;
+      transform: rotate(180deg);
+    }
+
+    .footer-watermark img {
+      width: 100%;
+      height: auto;
+    }
+
+    @media (max-width: 1024px) {
+      .footer-main-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .delivery-text { display: none; }
+      .nav-menu { display: none; }
+      .footer-main-grid {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        gap: 12px;
+        text-align: center;
+      }
+      
+      .back-to-top-btn {
+        bottom: 70px;
+        right: 16px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <!-- Site Header -->
   <header class="site-header">
     <div class="header-container">
       <div class="header-left">
@@ -461,7 +667,6 @@
     </div>
   </header>
 
-  <!-- Main Support Form Area -->
   <main>
     <div class="form-container">
       
@@ -520,49 +725,87 @@
         </form>
       </div>
 
-      <!-- Success Confirmation View -->
       <div id="successMessage">
         <svg viewBox="0 0 24 24">
           <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
         </svg>
         <h2>Thank You!</h2>
         <p>Your feedback has been successfully submitted. If you requested support, our team will reach out via email shortly.</p>
-        
-        <!-- Updated Button -->
         <button type="button" id="tryAgainBtn" class="btn-retry">Submit Another Response</button>
       </div>
 
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Pizza King</h4>
-        <p style="font-size: 0.9rem; color: #cbd5e0;">Delivering the best pizza experience straight through our app.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Support</h4>
-        <a href="javascript:void(0)">Contact Us</a>
-        <a href="javascript:void(0)">Track Order</a>
-        <a href="javascript:void(0)">Privacy Policy</a>
-      </div>
-      <div class="footer-col">
-        <h4>Subscribe to Newsletter</h4>
-        <div class="newsletter-form">
-          <input type="email" placeholder="Your email address" />
-          <button type="button">Subscribe</button>
+  <footer class="footer-wrap">
+    <div class="footer-watermark">
+      <img src="	https://pizzaking-2026.e-motionagency.net/_next/image?url=%2FformLogoTheme.png&w=640&q=75" alt="Watermark" />
+    </div>
+
+    <div class="footer-container">
+      <div class="footer-main-grid">
+        <div class="footer-brand">
+          <img class="brand-logo" src="https://pizzaking-pro.hel1.your-objectstorage.com/logo/pizza-king.png" alt="Pizza King Logo" />
+          <div class="social-wrap">
+            <a href="https://www.facebook.com/PizzaKing.Egypt/" target="_blank" aria-label="Facebook">
+              <img src="https://pizzaking-pro.hel1.your-objectstorage.com/social-media/facebook-1.svg" alt="Facebook" />
+            </a>
+            <a href="https://www.instagram.com/pizza_king_egypt" target="_blank" aria-label="Instagram">
+              <img src="https://pizzaking-pro.hel1.your-objectstorage.com/social-media/instgram.svg" alt="Instagram" />
+            </a>
+          </div>
+        </div>
+
+        <div class="newsletter-col">
+          <span class="newsletter-title">Subscribe to our newsletter for the latest updates</span>
+          <div class="newsletter-box">
+            <input type="email" placeholder="Your email address" aria-label="Your email address" />
+            <button type="button">Subscribe</button>
+          </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <a href="https://pizzaking-2026.e-motionagency.net/en" class="footer-nav-heading">Contact Us</a>
+          <div class="footer-nav-links">
+            <a href="https://pizzaking-2026.e-motionagency.net/en/product-categories">Menu Pizza King</a>
+            <a href="https://pizzaking-2026.e-motionagency.net/en/contact-inquiry">Contact Inquiry</a>
+          </div>
+        </div>
+
+        <div class="footer-nav-col">
+          <a href="https://pizzaking-2026.e-motionagency.net/en" class="footer-nav-heading">Additional Links</a>
+          <div class="footer-nav-links">
+            <a href="https://pizzaking-2026.e-motionagency.net/en/about-us">About Pizza King</a>
+            <a href="https://pizzaking-2026.e-motionagency.net/en/terms-and-conditions">Terms and Conditions</a>
+          </div>
+        </div>
+
+        <div class="contact-info-col">
+          <a class="contact-link" href="mailto:complaints@pizzaking.com">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            complaints@pizzaking.com
+          </a>
+          <a class="contact-link" href="tel:19519">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            19519
+          </a>
         </div>
       </div>
+
+      <div class="footer-bottom">
+        <div>All Rights Reserved © Pizza King 2026</div>
+        <div>Designed and Developed by <a href="https://e-motionagency.com/" target="_blank" rel="noreferrer noopener">e-motion</a></div>
+      </div>
     </div>
-    <div style="border-top: 1px solid rgba(255,255,255,0.1); width: 100%; padding-top: 20px; text-align: center; font-size: 0.8rem; color: #a0aec0;">
-      &copy; 2026 Pizza King. All rights reserved.
-    </div>
+
+    <a href="#" class="back-to-top-btn" aria-label="Back to top">
+      <svg viewBox="0 0 24 24">
+        <path d="M12 4l-8 8h5v8h6v-8h5z"/>
+      </svg>
+    </a>
   </footer>
 
   <script>
-    // Star Rating Logic
     const stars = document.querySelectorAll('.star');
     const ratingInput = document.getElementById('selectedRating');
     let currentRating = 0;
@@ -591,7 +834,6 @@
       });
     }
 
-    // Form Submission & Reset Logic
     const form = document.getElementById('supportForm');
     const formWrapper = document.getElementById('formWrapper');
     const successMessage = document.getElementById('successMessage');
@@ -620,7 +862,6 @@
       successMessage.style.display = 'block';
     });
 
-    // Reset Form when "Submit Another Response" is clicked
     tryAgainBtn.addEventListener('click', function() {
       form.reset();
       currentRating = 0;
